@@ -1,2 +1,19 @@
 # estudo-e-afins
-Repositorio de anotações variadas de tudo que posso precisar
+> Reposit[orio de documentações, anotações de curso e acervo de codigos para uso futuro
+
+---
+
+### DOCUMENTAÇÕES FINALIZADAS
+
+- N/A
+
+---
+
+### DOCUMENTAÇÕES A REALIZAR
+
+- HTML
+- CSS
+- JS
+- NODE.JS
+- POSTGRESQL
+- GIT-BASH
