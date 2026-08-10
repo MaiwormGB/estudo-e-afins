@@ -1,19 +1,7 @@
-# estudo-e-afins
-> Repositório de documentações, anotações de curso e acervo de codigos para uso futuro
+# DOCUMENTAÇÃO DE NODE JS
 
----
+> Iniciada em 10/08/2026
 
-### DOCUMENTAÇÕES FINALIZADAS
+As informações aqui anotadas foram obtidas através de diferentes vídeos do Youtube listados a baixo -
 
-- N/A
-
----
-
-### DOCUMENTAÇÕES A REALIZAR
-
-- HTML
-- CSS
-- JS
-- NODE.JS
-- POSTGRESQL
-- GIT-BASH
+- 
