@@ -1,5 +1,5 @@
 # estudo-e-afins
-> Reposit[orio de documentações, anotações de curso e acervo de codigos para uso futuro
+> Repositório de documentações, anotações de curso e acervo de codigos para uso futuro
 
 ---
 
