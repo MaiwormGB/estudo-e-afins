@@ -1,0 +1,16 @@
+site_name: Documentação de estudo
+
+theme:
+  name: material
+
+  palette:
+
+    - scheme: slate
+      toggle:
+        icon: material/brightness-7
+        name: Mudar para modo escuro
+
+    - scheme: default
+      toggle:
+        icon: material/brightness-4
+        name: Mudar para modo claro
