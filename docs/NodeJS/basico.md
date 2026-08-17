@@ -47,6 +47,10 @@ Existem varios modulos que podem entrar no lugar de *MODULO, onde cada um possui
 - Usado para lidar com criptografia <br>
 
 
+<div class="barrinha"></div>
+<div class="barrinha"></div>
+
+
 <style>
 
     h1{
