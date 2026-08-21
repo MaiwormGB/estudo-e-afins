@@ -37,19 +37,26 @@ Existem varios modulos que podem entrar no lugar de *MODULO, onde cada um possui
 
 ### Alguns modulos notorios
 
-<span class = "codigo">// Node.http</span> <br> 
+<span class = "codigo">// Node:http</span> <br> 
 - Criação de servidores HTTP. Nesse caso em especifico, é preciso colocar { create server } logo após o import para auxiliar em tal criação<br>
 
-<span class = "codigo">// Node.fs</span> <br>
+<span class = "codigo">// Node:fs</span> <br>
 - Sigla para "File Sistem". Permite a manipulação de arquivos (criar, ler, deletar, etc) <br>
 
-<span class = "codigo">// Node.crypto</span> <br>
+<span class = "codigo">// Node:crypto</span> <br>
 - Usado para lidar com criptografia <br>
 
 
 <div class="barrinha"></div>
 <div class="barrinha"></div>
 
+### Começando uma api
+
+Para começar uma API de Node, comece criando uma pasta e a populando com os seguintes arquivos:
+> Clique em cada arquivo para ver sua respectiva documentação
+
+- [server.js](https://nodejs.org/pt-br)
+- [package.json](https://nodejs.org/pt-br)    
 
 <style>
 
