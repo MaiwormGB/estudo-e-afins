@@ -64,9 +64,6 @@ A extrutura base de um documento HTML segue a seguir:
 <div class="barrinha"></div>
 
 
-
-
-
 <style>
 
     h1{
