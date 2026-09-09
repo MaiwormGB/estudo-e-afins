@@ -1,6 +1,25 @@
 # CRIANDO UM ARQUIVO NODE.JS
 > Disponibilizando um local onde a api sera depositada
 
+## O "npm"
+
+<span class ="codigo"> npm </span> é o diretor do NodeJS. É atravez dos comandos dele que instalaremos bibliotecas e faremos processos de forma automatica
+
+>Em caso de bloqueios que impedem o uso normal do npm, utilize .cmd na frente do npm para permitir seu uso
+
+### Comandos importantes
+
+- <span class = "codigo"> npm --version </span>
+> Checa versão do npm
+
+- <span class = "codigo"> npm init -y </span>
+> Cria o pacote de configuração da aplicação. veja "CONFIGURANDO UM ARQUIVO NODE.JS" pra 
+
+- <span class = "codigo"> npm install fastify </span>
+> Instala a API principal que utilizaremos aqui nessa documentação
+
+
+
 Como mencionado anteriormente, o primeiro passo para a criação de uma API com node é justamente criar um arquivo com a extensão ". JS", geralmente chamado de <span class = "codigo"> server.js. </span>
 
 Após isso, é nescessario declarar que aquele arquivo é de Node atravez do comando <span class = "codigo"> import {} from 'MODULO';</span>, já explicado no documento anterior.
@@ -18,6 +37,11 @@ usada atravez de <span class ="codigo"> const server = fastify();</span>
 <span class ="codigo"> npm install fastify</span>
 
 >Em caso de bloqueios que impedem o uso normal do npm, utilize .cmd na frente para permitir seu uso
+
+## CRIANDO UM PACOTE
+
+Para criar um pacote, basta rodar o codigo <span class ="codigo"> npm init -y</span> no terminal do diretório ao qual você quer utilizar como API
+
 
 
 ## METODOS HTTP
@@ -84,7 +108,7 @@ usada atravez de <span class ="codigo"> const server = fastify();</span>
         background-color: #353535;
         padding: 15px;
         border-radius: 10px;
-        color: #d1a2a0;
+        color: #a0d1a4;
 
     }
 
