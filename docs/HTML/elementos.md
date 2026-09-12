@@ -160,8 +160,53 @@ Separam conteudo em fileiras e colunas para organização
 
 - Define uma descrição simples de uma tabela
 
+<div class = "barrinha"> </div>
+
+### Hyperlinks | <span class = "codigo"> &lt;a&gt; </span>
+> Possui tag de fechamento
+
+Permite atrelar um link a um texto via o atributo <span class = "codigo"> href = "" </span>
+
+O atributo pode receber tanto links completos (Com http) ou caminhos relativos, que apenas funcionam para acessar arquivos dentro do mesmo diretório da página.
+
+O atributo tambem pode ser utilizado para redirecionar o usuario a um elemento da mesma pagina, caso o id do mesmo seja colocado antecedido por # dentro do atributo dentro do atributo
+
+> Outros elementos podem ser colocados dentro da tag &lt;a&gt; para torna-los clicaveis com links tambem, como imagems e divs
+
+---
+
+<span class = "codigo"> download</span> Baixa os conteudos do link
+
+<span class = "codigo"> rel</span> Especifica que tipo de conteudo esta presente no link (como uma stylesheet, por exemplo)
+
+<span class = "codigo"> tittle </span> Define um titulo ao elemento. Após ficar com o mouse em cima do elemento por alguns segundos, o titulo será visivel
+
+<div class = "barrinha"> </div>
+
+### Video / Audio | <span class = "codigo"> &lt;video&gt; / &lt;audio&gt; </span>
+> Ambos possuem tags de fechamento
+
+Permitem colocar videos e audios na pagina, utilizando do atributo <span class = "codigo"> src</span> para especificar o link do video, podendo ser tanto interno quanto externo
 
 
+---
+
+<span class = "codigo"> control</span> disponibiliza controles de media pre prontos (pause, skip, etc)
+
+<span class = "codigo"> atoplay</span> faz o conteudo tocar assim que a pagina carregar
+
+<span class = "codigo"> loop</span> faz o conteudo ficar em loop
+
+<span class = "codigo"> preload</span> garante que o conteudo vá carregar primeiro
+
+<span class = "codigo"> aposter</span>  atrela uma imagem ao video enquanto o mesmo não esta tocando
+
+---
+
+<span class = "codigo"> &lt; source&gt; </span> 
+> não possui tag de fechamento
+
+Permite a disponibilização de varias fontes de video e audio para garantir a acessibilidade em diferentes navegadores. Cada source precisa de um<span class = "codigo">src</span> e <span class = "codigo">type</span> proprio
 
 
 
