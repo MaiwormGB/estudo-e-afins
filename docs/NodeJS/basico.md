@@ -1,4 +1,4 @@
-# CONCEITOS BASICOS DE NODE.JS
+# Conceitos basicos de node.js
 > Explicação da linguagem e fundamentos iniciais
 
 ## // O que é Node.js? //
@@ -27,36 +27,63 @@ Essa forma de download permite melhor controle de versão e de desinstalação c
 <div class="barrinha"></div>
 <div class="barrinha"></div>
 
-## // Módulos do Node.JS //
+## // Extensões para VS Code //
 
-Ao começar um arquivo node, você deve começar o arquivo com
+**ESSENCIAIS**
 
-<span class = "codigo">import {} from 'node:*MODULO'</span>
+- **Node extension pack**
+- **Thunder Client** *(para testar as requisições. Lembre-se de criar uma )*
 
-Existem varios modulos que podem entrar no lugar de *MODULO, onde cada um possui sua própria função baseado naquilo que você quer realizar com a aplicação
+**RECOMENDAÇÕES**
 
-### Alguns modulos notorios
-
-<span class = "codigo">// Node:http</span> <br> 
-- Criação de servidores HTTP. Nesse caso em especifico, é preciso colocar { create server } logo após o import para auxiliar em tal criação<br>
-
-<span class = "codigo">// Node:fs</span> <br>
-- Sigla para "File Sistem". Permite a manipulação de arquivos (criar, ler, deletar, etc) <br>
-
-<span class = "codigo">// Node:crypto</span> <br>
-- Usado para lidar com criptografia <br>
-
+- **Palenight Theme**
+- **Symbols** *(pra deixar bonito :3)*
 
 <div class="barrinha"></div>
 <div class="barrinha"></div>
 
-### Começando uma api
+## // Primeiros passos //
 
-Para começar uma API de Node, comece criando uma pasta e a populando com os seguintes arquivos:
-> Clique em cada arquivo para ver sua respectiva documentação
+- Crie uma pasta para sua **API** e a acesse no VScode
+- Caso sua **API** esteja dentro de uma outra pasta, garanta que a pasta esteja selecionada no **Terminal**. 
 
-- [server.js](https://nodejs.org/pt-br)
-- [package.json](https://nodejs.org/pt-br)    
+*Comandos de terminal para lembrar*
+
+> `ls` descobre quais são os diretorios dentro daquela pasta
+
+> `cd` entra em um diretorio pelo nome
+
+- Execute: `npm.cmd init -y`
+
+- Dentro da pasta da API, crie uma pasta chamada *src* e, dentro dela, um arquivo chamado *server.js*. Esse será o arquivo principal da API
+
+<div class="barrinha"></div>
+
+## // Frameworks utilizados //
+
+- Express       
+> O principal que guia o funcionamento da API
+- Pg            
+> Para acessar o PostgreSQL com a API
+- JsonWebToken  
+> Para fazer a confirmação do
+- Bcrypt
+> Para criar o HASH dos dados sensiveis
+- dotenv
+> Para colocar as credenciais em um arquivo externo
+
+Instale todos os frameworks após criar o projeto com o comando abaixo. **Certifiquece novamente que a pasta da API esteja selecionada no terminal**
+> `npm.cmd install express pg jsonwebtoken bcrypt dotenv`
+
+<div class="barrinha"></div>
+
+## // Iniciando um servidor //
+
+- Após fazer a configuração inicial de sua **API**, execute `node src/server.js` para iniciar o servidor node no localhost. 
+
+*Caso o arquivo tenha um nome diferente ou esteja em outro diretório, coloque o caminho pertinente para acessa-lo dentro da API*
+
+
 
 <style>
 
@@ -69,6 +96,18 @@ Para começar uma API de Node, comece criando uma pasta e a populando com os seg
     h2{
 
         color: #82d889;
+
+    }
+
+    strong{
+
+        color: #82d889;        
+
+    }
+
+    em{
+
+        color: #98d19d;
 
     }
 
