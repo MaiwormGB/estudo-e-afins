@@ -222,13 +222,6 @@ app.put('/usuario/:id', async (req, res) =>{
 
     }
 
-    
-    a{
-
-        color: #5EFF6B;
-        text-decoration: underline;   
-
-    }
 
     .barrinha{
 
