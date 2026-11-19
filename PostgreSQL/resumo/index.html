@@ -1,0 +1,1994 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../NodeJS/servidor/">
+      
+      
+        <link rel="next" href="../../css/basico/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Resumo de PostgreSQL - Documentação de estudo</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#resumo-de-postgresql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Documentação de estudo" class="md-header__button md-logo" aria-label="Documentação de estudo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentação de estudo
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Resumo de PostgreSQL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentação de estudo" class="md-nav__button md-logo" aria-label="Documentação de estudo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentação de estudo
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DOCUMENTAÇÃO DE ESTUDOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTML
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    HTML
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HTML/basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CONCEITOS BASICOS DE HTML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HTML/elementos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ELEMENTOS PRINCIPAIS DE HTML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NodeJS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NodeJS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NodeJS/basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conceitos basicos de node.js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NodeJS/frameworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frameworks relevantes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NodeJS/requisicoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisições HTTP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NodeJS/resumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumo de Node com Express — API REST e CRUD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NodeJS/seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autenticações de segurança
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NodeJS/servidor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRIANDO UM ARQUIVO NODE.JS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PostgreSQL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumo de PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Css
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Css
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conceitos basicos de css
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/cores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cores e pintura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="resumo-de-postgresql">Resumo de PostgreSQL</h1>
+<p>Guia rápido de PostgreSQL para desenvolvimento web.</p>
+<p>O foco deste documento é o uso de comandos SQL em aplicações, principalmente
+para integração posterior com Node.js.</p>
+<hr />
+<h1 id="1-conceitos-basicos">1. Conceitos básicos</h1>
+<h2 id="banco-de-dados">Banco de dados</h2>
+<p>Um banco de dados contém tabelas e outros objetos relacionados aos dados.</p>
+<pre><code class="language-sql">CREATE DATABASE minha_api;
+</code></pre>
+<p>Para apagar:</p>
+<pre><code class="language-sql">DROP DATABASE minha_api;
+</code></pre>
+<blockquote>
+<p>Cuidado: <code>DROP DATABASE</code> apaga o banco e seus dados.</p>
+</blockquote>
+<hr />
+<h1 id="2-tabelas">2. Tabelas</h1>
+<h2 id="criar-tabela">Criar tabela</h2>
+<pre><code class="language-sql">CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    senha VARCHAR(100) NOT NULL
+);
+</code></pre>
+<p>Estrutura:</p>
+<pre><code class="language-sql">CREATE TABLE nome_tabela (
+    coluna tipo restrições,
+    coluna tipo restrições
+);
+</code></pre>
+<hr />
+<h1 id="3-tipos-de-dados-mais-usados">3. Tipos de dados mais usados</h1>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INTEGER</code></td>
+<td>Números inteiros</td>
+</tr>
+<tr>
+<td><code>BIGINT</code></td>
+<td>Inteiros maiores</td>
+</tr>
+<tr>
+<td><code>SERIAL</code></td>
+<td>Inteiro com incremento automático</td>
+</tr>
+<tr>
+<td><code>VARCHAR(n)</code></td>
+<td>Texto com limite</td>
+</tr>
+<tr>
+<td><code>TEXT</code></td>
+<td>Texto sem limite definido</td>
+</tr>
+<tr>
+<td><code>BOOLEAN</code></td>
+<td><code>TRUE</code> / <code>FALSE</code></td>
+</tr>
+<tr>
+<td><code>DATE</code></td>
+<td>Data</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP</code></td>
+<td>Data e hora</td>
+</tr>
+<tr>
+<td><code>DECIMAL</code></td>
+<td>Valores numéricos precisos</td>
+</tr>
+<tr>
+<td><code>JSONB</code></td>
+<td>Dados JSON</td>
+</tr>
+</tbody>
+</table>
+<p>Exemplo:</p>
+<pre><code class="language-sql">CREATE TABLE produtos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2),
+    disponivel BOOLEAN DEFAULT TRUE,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+</code></pre>
+<hr />
+<h1 id="4-restricoes">4. Restrições</h1>
+<h2 id="primary-key">PRIMARY KEY</h2>
+<p>Identifica unicamente cada registro.</p>
+<pre><code class="language-sql">id SERIAL PRIMARY KEY
+</code></pre>
+<p>Uma tabela só pode ter uma <code>PRIMARY KEY</code>.</p>
+<hr />
+<h2 id="not-null">NOT NULL</h2>
+<p>Impede que uma coluna receba <code>NULL</code>.</p>
+<pre><code class="language-sql">nome VARCHAR(100) NOT NULL
+</code></pre>
+<hr />
+<h2 id="unique">UNIQUE</h2>
+<p>Impede valores repetidos.</p>
+<pre><code class="language-sql">email VARCHAR(150) UNIQUE
+</code></pre>
+<p>Exemplo:</p>
+<pre><code class="language-sql">CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(150) UNIQUE NOT NULL
+);
+</code></pre>
+<hr />
+<h2 id="default">DEFAULT</h2>
+<p>Define um valor padrão.</p>
+<pre><code class="language-sql">ativo BOOLEAN DEFAULT TRUE
+</code></pre>
+<hr />
+<h2 id="check">CHECK</h2>
+<p>Cria uma condição que o valor precisa respeitar.</p>
+<pre><code class="language-sql">idade INTEGER CHECK (idade &gt;= 0)
+</code></pre>
+<hr />
+<h1 id="5-chaves-estrangeiras">5. Chaves estrangeiras</h1>
+<p>Uma <code>FOREIGN KEY</code> relaciona uma tabela com outra.</p>
+<pre><code class="language-sql">CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE pedidos (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER NOT NULL,
+
+    FOREIGN KEY (usuario_id)
+        REFERENCES usuarios(id)
+);
+</code></pre>
+<p>Nesse exemplo:</p>
+<pre><code class="language-text">usuarios
+   |
+   | id
+   |
+   v
+pedidos.usuario_id
+</code></pre>
+<p><code>pedidos.usuario_id</code> precisa apontar para um <code>usuarios.id</code> existente.</p>
+<hr />
+<h2 id="foreign-key-com-nome">FOREIGN KEY com nome</h2>
+<p>Também é possível nomear a restrição:</p>
+<pre><code class="language-sql">CREATE TABLE pedidos (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER NOT NULL,
+
+    CONSTRAINT fk_pedido_usuario
+        FOREIGN KEY (usuario_id)
+        REFERENCES usuarios(id)
+);
+</code></pre>
+<hr />
+<h1 id="6-insert">6. INSERT</h1>
+<p>Adiciona registros.</p>
+<pre><code class="language-sql">INSERT INTO usuarios (nome, email, senha)
+VALUES ('João', 'joao@email.com', '1234');
+</code></pre>
+<p>Vários registros:</p>
+<pre><code class="language-sql">INSERT INTO usuarios (nome, email, senha)
+VALUES
+    ('João', 'joao@email.com', '1234'),
+    ('Maria', 'maria@email.com', '5678'),
+    ('Pedro', 'pedro@email.com', 'abcd');
+</code></pre>
+<hr />
+<h1 id="7-select">7. SELECT</h1>
+<p>Consulta registros.</p>
+<pre><code class="language-sql">SELECT * FROM usuarios;
+</code></pre>
+<p>Selecionando colunas específicas:</p>
+<pre><code class="language-sql">SELECT id, nome, email
+FROM usuarios;
+</code></pre>
+<hr />
+<h1 id="8-where">8. WHERE</h1>
+<p>Filtra registros.</p>
+<pre><code class="language-sql">SELECT *
+FROM usuarios
+WHERE id = 1;
+</code></pre>
+<p>Mais condições:</p>
+<pre><code class="language-sql">SELECT *
+FROM usuarios
+WHERE nome = 'João'
+AND id = 1;
+</code></pre>
+<p>Ou:</p>
+<pre><code class="language-sql">SELECT *
+FROM usuarios
+WHERE nome = 'João'
+OR nome = 'Maria';
+</code></pre>
+<hr />
+<h1 id="9-operadores">9. Operadores</h1>
+<h2 id="comparacao">Comparação</h2>
+<pre><code class="language-sql">=       -- igual
+&lt;&gt;      -- diferente
+!=      -- diferente
+&gt;       -- maior
+&lt;       -- menor
+&gt;=      -- maior ou igual
+&lt;=      -- menor ou igual
+</code></pre>
+<p>Exemplo:</p>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+WHERE preco &gt; 100;
+</code></pre>
+<hr />
+<h1 id="10-in">10. IN</h1>
+<p>Verifica se o valor está dentro de uma lista.</p>
+<pre><code class="language-sql">SELECT *
+FROM usuarios
+WHERE id IN (1, 2, 3);
+</code></pre>
+<hr />
+<h1 id="11-between">11. BETWEEN</h1>
+<p>Seleciona valores dentro de um intervalo.</p>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+WHERE preco BETWEEN 50 AND 100;
+</code></pre>
+<hr />
+<h1 id="12-like">12. LIKE</h1>
+<p>Pesquisa texto.</p>
+<pre><code class="language-sql">SELECT *
+FROM usuarios
+WHERE nome LIKE 'Jo%';
+</code></pre>
+<p><code>%</code> representa qualquer quantidade de caracteres.</p>
+<p>Exemplos:</p>
+<pre><code class="language-text">'Jo%'      -- começa com Jo
+'%Jo'      -- termina com Jo
+'%Jo%'     -- contém Jo
+</code></pre>
+<hr />
+<h1 id="13-ilike">13. ILIKE</h1>
+<p>No PostgreSQL, <code>ILIKE</code> funciona como <code>LIKE</code>, mas ignora diferença
+entre letras maiúsculas e minúsculas.</p>
+<pre><code class="language-sql">SELECT *
+FROM usuarios
+WHERE nome ILIKE '%joão%';
+</code></pre>
+<hr />
+<h1 id="14-null">14. NULL</h1>
+<p><code>NULL</code> representa ausência de valor.</p>
+<p>Não use:</p>
+<pre><code class="language-sql">WHERE email = NULL
+</code></pre>
+<p>Use:</p>
+<pre><code class="language-sql">WHERE email IS NULL
+</code></pre>
+<p>Ou:</p>
+<pre><code class="language-sql">WHERE email IS NOT NULL
+</code></pre>
+<hr />
+<h1 id="15-order-by">15. ORDER BY</h1>
+<p>Ordena os resultados.</p>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+ORDER BY preco;
+</code></pre>
+<p>Ordem decrescente:</p>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+ORDER BY preco DESC;
+</code></pre>
+<p>Ordem crescente:</p>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+ORDER BY preco ASC;
+</code></pre>
+<hr />
+<h1 id="16-limit">16. LIMIT</h1>
+<p>Limita a quantidade de resultados.</p>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+LIMIT 10;
+</code></pre>
+<hr />
+<h1 id="17-offset">17. OFFSET</h1>
+<p>Pula determinada quantidade de registros.</p>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+LIMIT 10
+OFFSET 20;
+</code></pre>
+<p>Útil para paginação.</p>
+<p>Exemplo:</p>
+<pre><code class="language-text">Página 1:
+LIMIT 10 OFFSET 0
+
+Página 2:
+LIMIT 10 OFFSET 10
+
+Página 3:
+LIMIT 10 OFFSET 20
+</code></pre>
+<hr />
+<h1 id="18-update">18. UPDATE</h1>
+<p>Atualiza registros.</p>
+<pre><code class="language-sql">UPDATE usuarios
+SET nome = 'Carlos'
+WHERE id = 1;
+</code></pre>
+<p>Mais de uma coluna:</p>
+<pre><code class="language-sql">UPDATE usuarios
+SET
+    nome = 'Carlos',
+    email = 'carlos@email.com'
+WHERE id = 1;
+</code></pre>
+<blockquote>
+<p>Sempre tome cuidado com o <code>WHERE</code>.</p>
+<p>Sem <code>WHERE</code>, todos os registros serão alterados.</p>
+</blockquote>
+<hr />
+<h1 id="19-delete">19. DELETE</h1>
+<p>Remove registros.</p>
+<pre><code class="language-sql">DELETE FROM usuarios
+WHERE id = 1;
+</code></pre>
+<blockquote>
+<p>Sem <code>WHERE</code>, todos os registros serão removidos.</p>
+</blockquote>
+<hr />
+<h1 id="20-returning">20. RETURNING</h1>
+<p>O PostgreSQL permite retornar o registro afetado por
+<code>INSERT</code>, <code>UPDATE</code> e <code>DELETE</code>.</p>
+<p>Isso é especialmente útil em APIs.</p>
+<h2 id="insert">INSERT</h2>
+<pre><code class="language-sql">INSERT INTO usuarios (nome, email)
+VALUES ('João', 'joao@email.com')
+RETURNING *;
+</code></pre>
+<p>Ou apenas o ID:</p>
+<pre><code class="language-sql">INSERT INTO usuarios (nome, email)
+VALUES ('João', 'joao@email.com')
+RETURNING id;
+</code></pre>
+<h2 id="update">UPDATE</h2>
+<pre><code class="language-sql">UPDATE usuarios
+SET nome = 'Carlos'
+WHERE id = 1
+RETURNING *;
+</code></pre>
+<h2 id="delete">DELETE</h2>
+<pre><code class="language-sql">DELETE FROM usuarios
+WHERE id = 1
+RETURNING *;
+</code></pre>
+<hr />
+<h1 id="21-join">21. JOIN</h1>
+<p>Usado para consultar dados relacionados entre tabelas.</p>
+<p>Exemplo:</p>
+<pre><code class="language-sql">CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100)
+);
+
+CREATE TABLE pedidos (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER REFERENCES usuarios(id),
+    produto VARCHAR(100)
+);
+</code></pre>
+<h2 id="inner-join">INNER JOIN</h2>
+<p>Retorna registros que possuem correspondência nas duas tabelas.</p>
+<pre><code class="language-sql">SELECT
+    usuarios.nome,
+    pedidos.produto
+FROM usuarios
+INNER JOIN pedidos
+    ON pedidos.usuario_id = usuarios.id;
+</code></pre>
+<p>Resultado conceitual:</p>
+<pre><code class="language-text">nome     | produto
+---------|--------
+João     | Espada
+Maria    | Poção
+João     | Escudo
+</code></pre>
+<hr />
+<h2 id="left-join">LEFT JOIN</h2>
+<p>Retorna todos os registros da tabela da esquerda,
+mesmo que não tenham correspondência.</p>
+<pre><code class="language-sql">SELECT
+    usuarios.nome,
+    pedidos.produto
+FROM usuarios
+LEFT JOIN pedidos
+    ON pedidos.usuario_id = usuarios.id;
+</code></pre>
+<p>Isso permite encontrar, por exemplo, usuários que ainda
+não possuem pedidos.</p>
+<hr />
+<h1 id="22-alias">22. Alias</h1>
+<p>Podemos dar apelidos para tabelas e colunas.</p>
+<pre><code class="language-sql">SELECT
+    u.nome,
+    p.produto
+FROM usuarios AS u
+JOIN pedidos AS p
+    ON p.usuario_id = u.id;
+</code></pre>
+<p>O <code>AS</code> pode ser omitido:</p>
+<pre><code class="language-sql">FROM usuarios u
+JOIN pedidos p
+</code></pre>
+<hr />
+<h1 id="23-funcoes-de-agregacao">23. Funções de agregação</h1>
+<h2 id="count">COUNT</h2>
+<p>Conta registros.</p>
+<pre><code class="language-sql">SELECT COUNT(*)
+FROM usuarios;
+</code></pre>
+<hr />
+<h2 id="sum">SUM</h2>
+<p>Soma valores.</p>
+<pre><code class="language-sql">SELECT SUM(preco)
+FROM produtos;
+</code></pre>
+<hr />
+<h2 id="avg">AVG</h2>
+<p>Calcula média.</p>
+<pre><code class="language-sql">SELECT AVG(preco)
+FROM produtos;
+</code></pre>
+<hr />
+<h2 id="max">MAX</h2>
+<p>Maior valor.</p>
+<pre><code class="language-sql">SELECT MAX(preco)
+FROM produtos;
+</code></pre>
+<hr />
+<h2 id="min">MIN</h2>
+<p>Menor valor.</p>
+<pre><code class="language-sql">SELECT MIN(preco)
+FROM produtos;
+</code></pre>
+<hr />
+<h1 id="24-group-by">24. GROUP BY</h1>
+<p>Agrupa registros.</p>
+<p>Exemplo:</p>
+<pre><code class="language-sql">SELECT usuario_id, COUNT(*)
+FROM pedidos
+GROUP BY usuario_id;
+</code></pre>
+<p>Resultado conceitual:</p>
+<pre><code class="language-text">usuario_id | count
+-----------|------
+1          | 5
+2          | 3
+3          | 8
+</code></pre>
+<hr />
+<h1 id="25-having">25. HAVING</h1>
+<p>Filtra grupos criados pelo <code>GROUP BY</code>.</p>
+<pre><code class="language-sql">SELECT usuario_id, COUNT(*)
+FROM pedidos
+GROUP BY usuario_id
+HAVING COUNT(*) &gt; 5;
+</code></pre>
+<p>Diferença:</p>
+<pre><code class="language-text">WHERE  -&gt; filtra registros antes do agrupamento
+
+HAVING -&gt; filtra grupos depois do agrupamento
+</code></pre>
+<hr />
+<h1 id="26-distinct">26. DISTINCT</h1>
+<p>Remove valores duplicados.</p>
+<pre><code class="language-sql">SELECT DISTINCT usuario_id
+FROM pedidos;
+</code></pre>
+<hr />
+<h1 id="27-alterar-tabela">27. Alterar tabela</h1>
+<h2 id="adicionar-coluna">Adicionar coluna</h2>
+<pre><code class="language-sql">ALTER TABLE usuarios
+ADD COLUMN idade INTEGER;
+</code></pre>
+<hr />
+<h2 id="remover-coluna">Remover coluna</h2>
+<pre><code class="language-sql">ALTER TABLE usuarios
+DROP COLUMN idade;
+</code></pre>
+<hr />
+<h2 id="alterar-tipo">Alterar tipo</h2>
+<pre><code class="language-sql">ALTER TABLE usuarios
+ALTER COLUMN nome TYPE TEXT;
+</code></pre>
+<hr />
+<h2 id="adicionar-restricao">Adicionar restrição</h2>
+<pre><code class="language-sql">ALTER TABLE usuarios
+ADD CONSTRAINT email_unico UNIQUE (email);
+</code></pre>
+<hr />
+<h1 id="28-renomear">28. Renomear</h1>
+<h2 id="coluna">Coluna</h2>
+<pre><code class="language-sql">ALTER TABLE usuarios
+RENAME COLUMN nome TO nome_completo;
+</code></pre>
+<h2 id="tabela">Tabela</h2>
+<pre><code class="language-sql">ALTER TABLE usuarios
+RENAME TO clientes;
+</code></pre>
+<hr />
+<h1 id="29-remover-tabela">29. Remover tabela</h1>
+<pre><code class="language-sql">DROP TABLE usuarios;
+</code></pre>
+<p>Se existirem dependências:</p>
+<pre><code class="language-sql">DROP TABLE usuarios CASCADE;
+</code></pre>
+<blockquote>
+<p><code>CASCADE</code> pode remover objetos dependentes.
+Use com cuidado.</p>
+</blockquote>
+<hr />
+<h1 id="30-truncate">30. TRUNCATE</h1>
+<p>Remove todos os registros de uma tabela.</p>
+<pre><code class="language-sql">TRUNCATE TABLE usuarios;
+</code></pre>
+<p>Diferente de:</p>
+<pre><code class="language-sql">DELETE FROM usuarios;
+</code></pre>
+<p><code>TRUNCATE</code> é destinado a limpar a tabela inteira e não permite
+um <code>WHERE</code>.</p>
+<hr />
+<h1 id="31-jsonb">31. JSONB</h1>
+<p>O PostgreSQL possui suporte para JSON através do tipo <code>JSONB</code>.</p>
+<p>Exemplo:</p>
+<pre><code class="language-sql">CREATE TABLE itens (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    dados JSONB
+);
+</code></pre>
+<p>Inserindo JSON:</p>
+<pre><code class="language-sql">INSERT INTO itens (nome, dados)
+VALUES (
+    'Espada',
+    '{&quot;dano&quot;: &quot;2d6&quot;, &quot;alcance&quot;: 1}'
+);
+</code></pre>
+<p>Consultando:</p>
+<pre><code class="language-sql">SELECT dados
+FROM itens;
+</code></pre>
+<p>Acessando uma propriedade:</p>
+<pre><code class="language-sql">SELECT dados-&gt;'dano'
+FROM itens;
+</code></pre>
+<p>Como texto:</p>
+<pre><code class="language-sql">SELECT dados-&gt;&gt;'dano'
+FROM itens;
+</code></pre>
+<p>Filtrando:</p>
+<pre><code class="language-sql">SELECT *
+FROM itens
+WHERE dados-&gt;&gt;'dano' = '2d6';
+</code></pre>
+<hr />
+<h1 id="32-arrays">32. Arrays</h1>
+<p>PostgreSQL também possui arrays.</p>
+<pre><code class="language-sql">CREATE TABLE personagens (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    talentos TEXT[]
+);
+</code></pre>
+<p>Inserindo:</p>
+<pre><code class="language-sql">INSERT INTO personagens (nome, talentos)
+VALUES (
+    'Aragorn',
+    ARRAY['Espadachim', 'Liderança']
+);
+</code></pre>
+<p>Ou:</p>
+<pre><code class="language-sql">INSERT INTO personagens (nome, talentos)
+VALUES (
+    'Aragorn',
+    '{&quot;Espadachim&quot;, &quot;Liderança&quot;}'
+);
+</code></pre>
+<hr />
+<h1 id="33-subquery">33. Subquery</h1>
+<p>Uma query pode ser utilizada dentro de outra.</p>
+<p>Exemplo:</p>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+WHERE preco &gt; (
+    SELECT AVG(preco)
+    FROM produtos
+);
+</code></pre>
+<p>Nesse caso, são selecionados produtos com preço acima da média.</p>
+<hr />
+<h1 id="34-exists">34. EXISTS</h1>
+<p>Verifica se uma subquery retorna algum resultado.</p>
+<pre><code class="language-sql">SELECT *
+FROM usuarios u
+WHERE EXISTS (
+    SELECT 1
+    FROM pedidos p
+    WHERE p.usuario_id = u.id
+);
+</code></pre>
+<p>Retorna usuários que possuem pelo menos um pedido.</p>
+<hr />
+<h1 id="35-case">35. CASE</h1>
+<p>Permite criar condições dentro do <code>SELECT</code>.</p>
+<pre><code class="language-sql">SELECT
+    nome,
+    preco,
+    CASE
+        WHEN preco &lt; 50 THEN 'barato'
+        WHEN preco &lt; 100 THEN 'medio'
+        ELSE 'caro'
+    END AS categoria
+FROM produtos;
+</code></pre>
+<hr />
+<h1 id="36-transacoes">36. Transações</h1>
+<p>Transações permitem executar várias operações como uma única unidade.</p>
+<pre><code class="language-sql">BEGIN;
+
+UPDATE contas
+SET saldo = saldo - 100
+WHERE id = 1;
+
+UPDATE contas
+SET saldo = saldo + 100
+WHERE id = 2;
+
+COMMIT;
+</code></pre>
+<p>Se algo der errado:</p>
+<pre><code class="language-sql">ROLLBACK;
+</code></pre>
+<p>Estrutura:</p>
+<pre><code class="language-text">BEGIN
+  ↓
+operações
+  ↓
+COMMIT
+</code></pre>
+<p>Ou:</p>
+<pre><code class="language-text">BEGIN
+  ↓
+operações
+  ↓
+ROLLBACK
+</code></pre>
+<hr />
+<h1 id="37-indices">37. Índices</h1>
+<p>Índices podem acelerar consultas em determinadas colunas.</p>
+<pre><code class="language-sql">CREATE INDEX idx_usuario_email
+ON usuarios(email);
+</code></pre>
+<p>Remover:</p>
+<pre><code class="language-sql">DROP INDEX idx_usuario_email;
+</code></pre>
+<p>Índices são especialmente úteis para colunas frequentemente utilizadas
+em buscas, filtros e relacionamentos.</p>
+<hr />
+<h1 id="38-comandos-uteis-para-inspecao">38. Comandos úteis para inspeção</h1>
+<p>No PostgreSQL pelo <code>psql</code>:</p>
+<pre><code class="language-sql">\l
+</code></pre>
+<p>Lista bancos.</p>
+<pre><code class="language-sql">\c nome_banco
+</code></pre>
+<p>Conecta a um banco.</p>
+<pre><code class="language-sql">\dt
+</code></pre>
+<p>Lista tabelas.</p>
+<pre><code class="language-sql">\d nome_tabela
+</code></pre>
+<p>Mostra a estrutura de uma tabela.</p>
+<pre><code class="language-sql">\du
+</code></pre>
+<p>Lista usuários/roles.</p>
+<pre><code class="language-sql">\q
+</code></pre>
+<p>Sai do <code>psql</code>.</p>
+<hr />
+<h1 id="39-exemplo-de-crud-completo">39. Exemplo de CRUD completo</h1>
+<p>Tabela:</p>
+<pre><code class="language-sql">CREATE TABLE produtos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    complemento VARCHAR(200) NOT NULL
+);
+</code></pre>
+<h2 id="create">CREATE</h2>
+<pre><code class="language-sql">INSERT INTO produtos (nome, complemento)
+VALUES ('Espada', 'Espada longa')
+RETURNING *;
+</code></pre>
+<h2 id="read">READ</h2>
+<pre><code class="language-sql">SELECT *
+FROM produtos;
+</code></pre>
+<p>Por ID:</p>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+WHERE id = 1;
+</code></pre>
+<h2 id="update_1">UPDATE</h2>
+<pre><code class="language-sql">UPDATE produtos
+SET complemento = 'Espada longa de aço'
+WHERE id = 1
+RETURNING *;
+</code></pre>
+<h2 id="delete_1">DELETE</h2>
+<pre><code class="language-sql">DELETE FROM produtos
+WHERE id = 1
+RETURNING *;
+</code></pre>
+<hr />
+<h1 id="40-crud-com-relacionamento">40. CRUD com relacionamento</h1>
+<p>Exemplo:</p>
+<pre><code class="language-sql">CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE produtos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE registros (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER NOT NULL,
+    produto_id INTEGER NOT NULL,
+    data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (usuario_id)
+        REFERENCES usuarios(id),
+
+    FOREIGN KEY (produto_id)
+        REFERENCES produtos(id)
+);
+</code></pre>
+<p>Inserindo um registro:</p>
+<pre><code class="language-sql">INSERT INTO registros (usuario_id, produto_id)
+VALUES (1, 5)
+RETURNING *;
+</code></pre>
+<p>Consultando com os nomes:</p>
+<pre><code class="language-sql">SELECT
+    r.id,
+    u.nome AS usuario,
+    p.nome AS produto,
+    r.data
+FROM registros r
+JOIN usuarios u
+    ON r.usuario_id = u.id
+JOIN produtos p
+    ON r.produto_id = p.id;
+</code></pre>
+<hr />
+<h1 id="41-sql-nodejs">41. SQL + Node.js</h1>
+<p>Para PostgreSQL em Node.js, uma biblioteca comum é o <code>pg</code>.</p>
+<p>Instalação:</p>
+<pre><code class="language-bash">npm install pg
+</code></pre>
+<p>Conexão:</p>
+<pre><code class="language-js">const { Pool } = require(&quot;pg&quot;);
+
+const pool = new Pool({
+    host: &quot;localhost&quot;,
+    port: 5432,
+    database: &quot;minha_api&quot;,
+    user: &quot;postgres&quot;,
+    password: &quot;senha&quot;
+});
+</code></pre>
+<hr />
+<h1 id="42-executando-uma-query">42. Executando uma query</h1>
+<pre><code class="language-js">const resultado = await pool.query(
+    &quot;SELECT * FROM usuarios&quot;
+);
+
+console.log(resultado.rows);
+</code></pre>
+<p><code>resultado.rows</code> contém os registros retornados.</p>
+<hr />
+<h1 id="43-query-com-parametros">43. Query com parâmetros</h1>
+<p>Nunca monte uma query usando diretamente dados fornecidos
+pelo usuário.</p>
+<p>Evite:</p>
+<pre><code class="language-js">const nome = req.body.nome;
+
+const resultado = await pool.query(
+    `SELECT * FROM usuarios WHERE nome = '${nome}'`
+);
+</code></pre>
+<p>Prefira parâmetros:</p>
+<pre><code class="language-js">const nome = req.body.nome;
+
+const resultado = await pool.query(
+    &quot;SELECT * FROM usuarios WHERE nome = $1&quot;,
+    [nome]
+);
+</code></pre>
+<p>Parâmetros:</p>
+<pre><code class="language-text">$1 -&gt; primeiro valor
+$2 -&gt; segundo valor
+$3 -&gt; terceiro valor
+</code></pre>
+<p>Exemplo:</p>
+<pre><code class="language-js">const resultado = await pool.query(
+    `
+    SELECT *
+    FROM usuarios
+    WHERE nome = $1
+    AND email = $2
+    `,
+    [nome, email]
+);
+</code></pre>
+<hr />
+<h1 id="44-insert-no-nodejs">44. INSERT no Node.js</h1>
+<pre><code class="language-js">const resultado = await pool.query(
+    `
+    INSERT INTO usuarios (nome, email)
+    VALUES ($1, $2)
+    RETURNING *
+    `,
+    [nome, email]
+);
+
+const usuario = resultado.rows[0];
+</code></pre>
+<hr />
+<h1 id="45-update-no-nodejs">45. UPDATE no Node.js</h1>
+<pre><code class="language-js">const resultado = await pool.query(
+    `
+    UPDATE usuarios
+    SET nome = $1
+    WHERE id = $2
+    RETURNING *
+    `,
+    [nome, id]
+);
+</code></pre>
+<hr />
+<h1 id="46-delete-no-nodejs">46. DELETE no Node.js</h1>
+<pre><code class="language-js">const resultado = await pool.query(
+    `
+    DELETE FROM usuarios
+    WHERE id = $1
+    RETURNING *
+    `,
+    [id]
+);
+</code></pre>
+<hr />
+<h1 id="47-tratamento-de-erro">47. Tratamento de erro</h1>
+<pre><code class="language-js">try {
+
+    const resultado = await pool.query(
+        &quot;SELECT * FROM usuarios&quot;
+    );
+
+    console.log(resultado.rows);
+
+} catch (erro) {
+
+    console.error(erro);
+
+}
+</code></pre>
+<hr />
+<h1 id="48-padrao-basico-de-uma-api">48. Padrão básico de uma API</h1>
+<p>Uma API normalmente recebe uma requisição,
+executa uma query e devolve o resultado.</p>
+<p>Exemplo com Express:</p>
+<pre><code class="language-js">app.get(&quot;/usuarios&quot;, async (req, res) =&gt; {
+
+    try {
+
+        const resultado = await pool.query(
+            &quot;SELECT * FROM usuarios&quot;
+        );
+
+        res.json(resultado.rows);
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        res.status(500).json({
+            erro: &quot;Erro ao buscar usuários&quot;
+        });
+
+    }
+
+});
+</code></pre>
+<p>Fluxo:</p>
+<pre><code class="language-text">Cliente
+   ↓
+HTTP Request
+   ↓
+Node.js / Express
+   ↓
+SQL Query
+   ↓
+PostgreSQL
+   ↓
+resultado.rows
+   ↓
+HTTP Response
+</code></pre>
+<hr />
+<h1 id="49-crud-de-uma-api">49. CRUD de uma API</h1>
+<p>Uma estrutura comum:</p>
+<pre><code class="language-text">POST   /usuarios       → INSERT
+GET    /usuarios       → SELECT
+GET    /usuarios/:id   → SELECT WHERE
+PUT    /usuarios/:id   → UPDATE
+DELETE /usuarios/:id   → DELETE
+</code></pre>
+<p>Exemplo:</p>
+<pre><code class="language-text">POST /produtos
+</code></pre>
+<pre><code class="language-sql">INSERT INTO produtos (...)
+VALUES (...);
+</code></pre>
+<hr />
+<pre><code class="language-text">GET /produtos
+</code></pre>
+<pre><code class="language-sql">SELECT * FROM produtos;
+</code></pre>
+<hr />
+<pre><code class="language-text">GET /produtos/5
+</code></pre>
+<pre><code class="language-sql">SELECT *
+FROM produtos
+WHERE id = 5;
+</code></pre>
+<hr />
+<pre><code class="language-text">PUT /produtos/5
+</code></pre>
+<pre><code class="language-sql">UPDATE produtos
+SET ...
+WHERE id = 5;
+</code></pre>
+<hr />
+<pre><code class="language-text">DELETE /produtos/5
+</code></pre>
+<pre><code class="language-sql">DELETE FROM produtos
+WHERE id = 5;
+</code></pre>
+<hr />
+<h1 id="50-resumo-dos-comandos-principais">50. Resumo dos comandos principais</h1>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CREATE DATABASE</code></td>
+<td>Criar banco</td>
+</tr>
+<tr>
+<td><code>CREATE TABLE</code></td>
+<td>Criar tabela</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE</code></td>
+<td>Alterar tabela</td>
+</tr>
+<tr>
+<td><code>DROP TABLE</code></td>
+<td>Remover tabela</td>
+</tr>
+<tr>
+<td><code>INSERT INTO</code></td>
+<td>Inserir dados</td>
+</tr>
+<tr>
+<td><code>SELECT</code></td>
+<td>Consultar dados</td>
+</tr>
+<tr>
+<td><code>UPDATE</code></td>
+<td>Alterar dados</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>Remover dados</td>
+</tr>
+<tr>
+<td><code>TRUNCATE</code></td>
+<td>Limpar tabela</td>
+</tr>
+<tr>
+<td><code>WHERE</code></td>
+<td>Filtrar</td>
+</tr>
+<tr>
+<td><code>ORDER BY</code></td>
+<td>Ordenar</td>
+</tr>
+<tr>
+<td><code>LIMIT</code></td>
+<td>Limitar resultados</td>
+</tr>
+<tr>
+<td><code>OFFSET</code></td>
+<td>Pular resultados</td>
+</tr>
+<tr>
+<td><code>JOIN</code></td>
+<td>Relacionar tabelas</td>
+</tr>
+<tr>
+<td><code>GROUP BY</code></td>
+<td>Agrupar</td>
+</tr>
+<tr>
+<td><code>HAVING</code></td>
+<td>Filtrar grupos</td>
+</tr>
+<tr>
+<td><code>DISTINCT</code></td>
+<td>Remover duplicados</td>
+</tr>
+<tr>
+<td><code>RETURNING</code></td>
+<td>Retornar dados afetados</td>
+</tr>
+<tr>
+<td><code>BEGIN</code></td>
+<td>Iniciar transação</td>
+</tr>
+<tr>
+<td><code>COMMIT</code></td>
+<td>Confirmar transação</td>
+</tr>
+<tr>
+<td><code>ROLLBACK</code></td>
+<td>Desfazer transação</td>
+</tr>
+<tr>
+<td><code>CREATE INDEX</code></td>
+<td>Criar índice</td>
+</tr>
+</tbody>
+</table>
+<style>
+
+    h1{
+
+        color: #695eff;
+
+    }
+
+    h2{
+
+        color: #a29cf8;;
+
+    }
+
+    .barrinha{
+
+        width: 100%; 
+        height: 5px; 
+        background-color: #ff765e; 
+        border-radius: 20px;
+        margin: 7px;
+
+    }
+
+    .codigo{
+
+        background-color: #353535;
+        padding: 4px 15px;
+        border-radius: 10px;
+        color: #d1a2a0;
+        margin-left: 10px;
+
+    }
+
+    .bloco_codigo{
+
+        background-color: #353535;
+        padding: 15px;
+        border-radius: 10px;
+        color: #d1a2a0;
+
+    }
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

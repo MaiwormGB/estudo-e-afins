@@ -1,0 +1,2575 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../requisicoes/">
+      
+      
+        <link rel="next" href="../seguranca/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Resumo de Node com Express — API REST e CRUD - Documentação de estudo</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#resumo-de-node-com-express-api-rest-e-crud" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Documentação de estudo" class="md-header__button md-logo" aria-label="Documentação de estudo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentação de estudo
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Resumo de Node com Express — API REST e CRUD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentação de estudo" class="md-nav__button md-logo" aria-label="Documentação de estudo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentação de estudo
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DOCUMENTAÇÃO DE ESTUDOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTML
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    HTML
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HTML/basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CONCEITOS BASICOS DE HTML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HTML/elementos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ELEMENTOS PRINCIPAIS DE HTML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NodeJS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NodeJS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conceitos basicos de node.js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frameworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frameworks relevantes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requisicoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisições HTTP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumo de Node com Express — API REST e CRUD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autenticações de segurança
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servidor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRIANDO UM ARQUIVO NODE.JS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PostgreSQL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PostgreSQL/resumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumo de PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Css
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Css
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conceitos basicos de css
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/cores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cores e pintura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="resumo-de-node-com-express-api-rest-e-crud">Resumo de Node com Express — API REST e CRUD</h1>
+<p>Guia prático de Express + PostgreSQL para desenvolvimento web.</p>
+<p>O foco é entender o fluxo:</p>
+<pre><code class="language-text">HTTP → Express → PostgreSQL → Express → HTTP
+</code></pre>
+<hr />
+<h1 id="1-o-que-e-uma-api">1. O que é uma API?</h1>
+<p>Uma API permite que diferentes aplicações se comuniquem.</p>
+<p>No caso de uma API web:</p>
+<pre><code class="language-text">Frontend
+   ↓
+HTTP Request
+   ↓
+Express / Node.js
+   ↓
+PostgreSQL
+   ↓
+Express / Node.js
+   ↓
+HTTP Response
+   ↓
+Frontend
+</code></pre>
+<p>Exemplo:</p>
+<pre><code class="language-text">GET /produtos
+</code></pre>
+<p>A API recebe a requisição e executa:</p>
+<pre><code class="language-sql">SELECT * FROM produtos;
+</code></pre>
+<p>Podendo retornar:</p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;: 1,
+        &quot;nome&quot;: &quot;Espada&quot;
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;nome&quot;: &quot;Escudo&quot;
+    }
+]
+</code></pre>
+<hr />
+<h1 id="2-criando-o-projeto">2. Criando o projeto</h1>
+<p>Criar uma pasta:</p>
+<pre><code class="language-bash">mkdir minha-api
+cd minha-api
+</code></pre>
+<p>Inicializar o Node:</p>
+<pre><code class="language-bash">npm init -y
+</code></pre>
+<p>Instalar Express e PostgreSQL:</p>
+<pre><code class="language-bash">npm install express pg
+</code></pre>
+<p>Estrutura inicial:</p>
+<pre><code class="language-text">minha-api/
+├── node_modules/
+├── package.json
+├── package-lock.json
+└── src/
+     └── server.js
+</code></pre>
+<hr />
+<h1 id="3-criando-o-servidor-express">3. Criando o servidor Express</h1>
+<p>No <code>server.js</code>:</p>
+<pre><code class="language-js">const express = require(&quot;express&quot;);
+
+const app = express();
+
+app.use(express.json());
+
+const PORT = 3000;
+
+app.listen(PORT, () =&gt; {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
+</code></pre>
+<p>Executar:</p>
+<pre><code class="language-bash">node src/server.js
+</code></pre>
+<hr />
+<h1 id="4-expressjson">4. <code>express.json()</code></h1>
+<p>Esta linha:</p>
+<pre><code class="language-js">app.use(express.json());
+</code></pre>
+<p>permite que o Express interprete requisições contendo JSON.</p>
+<p>Exemplo:</p>
+<pre><code class="language-json">{
+    &quot;nome&quot;: &quot;Espada&quot;,
+    &quot;preco&quot;: 100
+}
+</code></pre>
+<p>Os dados ficam disponíveis em:</p>
+<pre><code class="language-js">req.body
+</code></pre>
+<hr />
+<h1 id="5-criando-uma-rota-get">5. Criando uma rota GET</h1>
+<pre><code class="language-js">app.get(&quot;/produtos&quot;, (req, res) =&gt; {
+
+    res.json({
+        mensagem: &quot;Lista de produtos&quot;
+    });
+
+});
+</code></pre>
+<p>Acessando:</p>
+<pre><code class="language-text">GET /produtos
+</code></pre>
+<p>Resposta:</p>
+<pre><code class="language-json">{
+    &quot;mensagem&quot;: &quot;Lista de produtos&quot;
+}
+</code></pre>
+<hr />
+<h1 id="6-req-e-res">6. <code>req</code> e <code>res</code></h1>
+<p>Nas rotas:</p>
+<pre><code class="language-js">app.get(&quot;/produtos&quot;, (req, res) =&gt; {
+});
+</code></pre>
+<p><code>req</code> = <strong>request</strong></p>
+<p>Contém informações enviadas pelo cliente.</p>
+<p><code>res</code> = <strong>response</strong></p>
+<p>É utilizado para enviar a resposta.</p>
+<p>Exemplo:</p>
+<pre><code class="language-js">app.get(&quot;/teste&quot;, (req, res) =&gt; {
+
+    console.log(req);
+
+    res.json({
+        mensagem: &quot;Olá!&quot;
+    });
+
+});
+</code></pre>
+<hr />
+<h1 id="7-metodos-http">7. Métodos HTTP</h1>
+<p>Os principais métodos utilizados em um CRUD são:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td>Buscar</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td>Criar</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td>Atualizar</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td>Atualizar parcialmente</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>Excluir</td>
+</tr>
+</tbody>
+</table>
+<p>Uma API CRUD normalmente possui:</p>
+<pre><code class="language-text">POST   /produtos
+GET    /produtos
+GET    /produtos/:id
+PUT    /produtos/:id
+DELETE /produtos/:id
+</code></pre>
+<hr />
+<h1 id="8-criando-a-conexao-com-postgresql">8. Criando a conexão com PostgreSQL</h1>
+<p>Instalação:</p>
+<pre><code class="language-bash">npm install pg
+</code></pre>
+<p>No <code>server.js</code>:</p>
+<pre><code class="language-js">const { Pool } = require(&quot;pg&quot;);
+
+const pool = new Pool({
+    host: &quot;localhost&quot;,
+    port: 5432,
+    database: &quot;minha_api&quot;,
+    user: &quot;postgres&quot;,
+    password: &quot;senha&quot;
+});
+</code></pre>
+<p>O <code>Pool</code> gerencia conexões com o PostgreSQL.</p>
+<hr />
+<h1 id="9-fazendo-uma-query">9. Fazendo uma query</h1>
+<pre><code class="language-js">const resultado = await pool.query(
+    &quot;SELECT * FROM produtos&quot;
+);
+</code></pre>
+<p>Os registros ficam em:</p>
+<pre><code class="language-js">resultado.rows
+</code></pre>
+<p>Exemplo:</p>
+<pre><code class="language-js">console.log(resultado.rows);
+</code></pre>
+<hr />
+<h1 id="10-primeiro-crud">10. Primeiro CRUD</h1>
+<p>Considere esta tabela:</p>
+<pre><code class="language-sql">CREATE TABLE produtos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    complemento VARCHAR(200) NOT NULL
+);
+</code></pre>
+<hr />
+<h1 id="11-create-post">11. CREATE — POST</h1>
+<p>Criar produto:</p>
+<pre><code class="language-js">app.post(&quot;/produtos&quot;, async (req, res) =&gt; {
+
+    try {
+
+        const { nome, complemento } = req.body;
+
+        const resultado = await pool.query(
+            `
+            INSERT INTO produtos (nome, complemento)
+            VALUES ($1, $2)
+            RETURNING *
+            `,
+            [nome, complemento]
+        );
+
+        res.status(201).json(resultado.rows[0]);
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        res.status(500).json({
+            erro: &quot;Erro ao criar produto&quot;
+        });
+
+    }
+
+});
+</code></pre>
+<p>Requisição:</p>
+<pre><code class="language-http">POST /produtos
+</code></pre>
+<p>Body:</p>
+<pre><code class="language-json">{
+    &quot;nome&quot;: &quot;Espada&quot;,
+    &quot;complemento&quot;: &quot;Espada longa&quot;
+}
+</code></pre>
+<p>Resposta:</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 1,
+    &quot;nome&quot;: &quot;Espada&quot;,
+    &quot;complemento&quot;: &quot;Espada longa&quot;
+}
+</code></pre>
+<hr />
+<h1 id="12-por-que-1-e-2">12. Por que <code>$1</code> e <code>$2</code>?</h1>
+<p>A query:</p>
+<pre><code class="language-js">`
+INSERT INTO produtos (nome, complemento)
+VALUES ($1, $2)
+`
+</code></pre>
+<p>recebe:</p>
+<pre><code class="language-js">[nome, complemento]
+</code></pre>
+<p>Assim:</p>
+<pre><code class="language-text">$1 → nome
+$2 → complemento
+</code></pre>
+<p>Isso é chamado de <strong>query parametrizada</strong>.</p>
+<p>Evite:</p>
+<pre><code class="language-js">`INSERT INTO produtos (nome) VALUES ('${nome}')`
+</code></pre>
+<p>Prefira:</p>
+<pre><code class="language-js">`
+INSERT INTO produtos (nome)
+VALUES ($1)
+`
+</code></pre>
+<p>com:</p>
+<pre><code class="language-js">[nome]
+</code></pre>
+<hr />
+<h1 id="13-read-get">13. READ — GET</h1>
+<p>Buscar todos os produtos:</p>
+<pre><code class="language-js">app.get(&quot;/produtos&quot;, async (req, res) =&gt; {
+
+    try {
+
+        const resultado = await pool.query(
+            &quot;SELECT * FROM produtos&quot;
+        );
+
+        res.json(resultado.rows);
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        res.status(500).json({
+            erro: &quot;Erro ao buscar produtos&quot;
+        });
+
+    }
+
+});
+</code></pre>
+<hr />
+<h1 id="14-get-por-id">14. GET por ID</h1>
+<p>A URL:</p>
+<pre><code class="language-text">GET /produtos/5
+</code></pre>
+<p>possui um parâmetro:</p>
+<pre><code class="language-text">:id
+</code></pre>
+<p>Criamos a rota:</p>
+<pre><code class="language-js">app.get(&quot;/produtos/:id&quot;, async (req, res) =&gt; {
+
+    try {
+
+        const { id } = req.params;
+
+        const resultado = await pool.query(
+            `
+            SELECT *
+            FROM produtos
+            WHERE id = $1
+            `,
+            [id]
+        );
+
+        res.json(resultado.rows[0]);
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        res.status(500).json({
+            erro: &quot;Erro ao buscar produto&quot;
+        });
+
+    }
+
+});
+</code></pre>
+<hr />
+<h1 id="15-reqparams">15. <code>req.params</code></h1>
+<p>Para:</p>
+<pre><code class="language-text">/produtos/5
+</code></pre>
+<p>e:</p>
+<pre><code class="language-js">app.get(&quot;/produtos/:id&quot;, ...)
+</code></pre>
+<p>podemos obter:</p>
+<pre><code class="language-js">req.params.id
+</code></pre>
+<p>Resultado:</p>
+<pre><code class="language-text">&quot;5&quot;
+</code></pre>
+<hr />
+<h1 id="16-verificando-se-o-registro-existe">16. Verificando se o registro existe</h1>
+<p>Uma melhoria importante:</p>
+<pre><code class="language-js">if (resultado.rows.length === 0) {
+
+    return res.status(404).json({
+        erro: &quot;Produto não encontrado&quot;
+    });
+
+}
+</code></pre>
+<p>Exemplo completo:</p>
+<pre><code class="language-js">app.get(&quot;/produtos/:id&quot;, async (req, res) =&gt; {
+
+    try {
+
+        const { id } = req.params;
+
+        const resultado = await pool.query(
+            `
+            SELECT *
+            FROM produtos
+            WHERE id = $1
+            `,
+            [id]
+        );
+
+        if (resultado.rows.length === 0) {
+
+            return res.status(404).json({
+                erro: &quot;Produto não encontrado&quot;
+            });
+
+        }
+
+        res.json(resultado.rows[0]);
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        res.status(500).json({
+            erro: &quot;Erro ao buscar produto&quot;
+        });
+
+    }
+
+});
+</code></pre>
+<hr />
+<h1 id="17-update-put">17. UPDATE — PUT</h1>
+<pre><code class="language-js">app.put(&quot;/produtos/:id&quot;, async (req, res) =&gt; {
+
+    try {
+
+        const { id } = req.params;
+        const { nome, complemento } = req.body;
+
+        const resultado = await pool.query(
+            `
+            UPDATE produtos
+            SET
+                nome = $1,
+                complemento = $2
+            WHERE id = $3
+            RETURNING *
+            `,
+            [nome, complemento, id]
+        );
+
+        if (resultado.rows.length === 0) {
+
+            return res.status(404).json({
+                erro: &quot;Produto não encontrado&quot;
+            });
+
+        }
+
+        res.json(resultado.rows[0]);
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        res.status(500).json({
+            erro: &quot;Erro ao atualizar produto&quot;
+        });
+
+    }
+
+});
+</code></pre>
+<p>Requisição:</p>
+<pre><code class="language-http">PUT /produtos/1
+</code></pre>
+<p>Body:</p>
+<pre><code class="language-json">{
+    &quot;nome&quot;: &quot;Espada grande&quot;,
+    &quot;complemento&quot;: &quot;Espada de duas mãos&quot;
+}
+</code></pre>
+<hr />
+<h1 id="18-delete">18. DELETE</h1>
+<pre><code class="language-js">app.delete(&quot;/produtos/:id&quot;, async (req, res) =&gt; {
+
+    try {
+
+        const { id } = req.params;
+
+        const resultado = await pool.query(
+            `
+            DELETE FROM produtos
+            WHERE id = $1
+            RETURNING *
+            `,
+            [id]
+        );
+
+        if (resultado.rows.length === 0) {
+
+            return res.status(404).json({
+                erro: &quot;Produto não encontrado&quot;
+            });
+
+        }
+
+        res.json(resultado.rows[0]);
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        res.status(500).json({
+            erro: &quot;Erro ao excluir produto&quot;
+        });
+
+    }
+
+});
+</code></pre>
+<hr />
+<h1 id="19-status-http">19. Status HTTP</h1>
+<p>Alguns códigos importantes:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Código</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><code>200</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>201</code></td>
+<td>Criado</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>204</code></td>
+<td>Sucesso sem conteúdo</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>400</code></td>
+<td>Requisição inválida</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>401</code></td>
+<td>Não autenticado</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>403</code></td>
+<td>Sem permissão</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>404</code></td>
+<td>Não encontrado</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>409</code></td>
+<td>Conflito</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>500</code></td>
+<td>Erro interno</td>
+</tr>
+</tbody>
+</table>
+<p>Exemplo:</p>
+<pre><code class="language-js">res.status(201).json(produto);
+</code></pre>
+<hr />
+<h1 id="20-validacao-basica">20. Validação básica</h1>
+<p>Não é uma boa ideia simplesmente confiar no <code>req.body</code>.</p>
+<p>Exemplo:</p>
+<pre><code class="language-js">const { nome, complemento } = req.body;
+
+if (!nome || !complemento) {
+
+    return res.status(400).json({
+        erro: &quot;Nome e complemento são obrigatórios&quot;
+    });
+
+}
+</code></pre>
+<p>Depois disso:</p>
+<pre><code class="language-js">const resultado = await pool.query(...);
+</code></pre>
+<p>A validação da API e as restrições do banco trabalham juntas.</p>
+<p>Por exemplo:</p>
+<pre><code class="language-sql">nome VARCHAR(100) NOT NULL
+</code></pre>
+<p>e:</p>
+<pre><code class="language-js">if (!nome) {
+    return res.status(400).json(...);
+}
+</code></pre>
+<hr />
+<h1 id="21-query-com-multiplos-filtros">21. Query com múltiplos filtros</h1>
+<p>Exemplo:</p>
+<pre><code class="language-js">app.get(&quot;/produtos&quot;, async (req, res) =&gt; {
+
+    const { nome } = req.query;
+
+    const resultado = await pool.query(
+        `
+        SELECT *
+        FROM produtos
+        WHERE nome ILIKE $1
+        `,
+        [`%${nome}%`]
+    );
+
+    res.json(resultado.rows);
+
+});
+</code></pre>
+<p>URL:</p>
+<pre><code class="language-text">GET /produtos?nome=espada
+</code></pre>
+<p><code>req.query</code> contém:</p>
+<pre><code class="language-js">{
+    nome: &quot;espada&quot;
+}
+</code></pre>
+<hr />
+<h1 id="22-reqbody-reqparams-e-reqquery">22. <code>req.body</code>, <code>req.params</code> e <code>req.query</code></h1>
+<p>São três coisas utilizadas constantemente:</p>
+<h2 id="reqbody"><code>req.body</code></h2>
+<p>Dados enviados no corpo:</p>
+<pre><code class="language-json">{
+    &quot;nome&quot;: &quot;Espada&quot;
+}
+</code></pre>
+<p>Acessar:</p>
+<pre><code class="language-js">req.body.nome
+</code></pre>
+<hr />
+<h2 id="reqparams"><code>req.params</code></h2>
+<p>Dados presentes na URL:</p>
+<pre><code class="language-text">/produtos/10
+</code></pre>
+<p>Rota:</p>
+<pre><code class="language-js">/produtos/:id
+</code></pre>
+<p>Acessar:</p>
+<pre><code class="language-js">req.params.id
+</code></pre>
+<hr />
+<h2 id="reqquery"><code>req.query</code></h2>
+<p>Parâmetros após <code>?</code>:</p>
+<pre><code class="language-text">/produtos?nome=espada
+</code></pre>
+<p>Acessar:</p>
+<pre><code class="language-js">req.query.nome
+</code></pre>
+<hr />
+<h1 id="23-crud-completo">23. CRUD completo</h1>
+<p>Para uma tabela <code>produtos</code>:</p>
+<pre><code class="language-text">                    PostgreSQL
+                         ▲
+                         │
+                     SQL Query
+                         │
+                         ▼
+Cliente → Express → Controller
+  │                       │
+  └──── HTTP Response ◄───┘
+</code></pre>
+<p>Endpoints:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Endpoint</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/produtos</code></td>
+<td><code>INSERT</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/produtos</code></td>
+<td><code>SELECT</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/produtos/:id</code></td>
+<td><code>SELECT ... WHERE</code></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/produtos/:id</code></td>
+<td><code>UPDATE</code></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/produtos/:id</code></td>
+<td><code>DELETE</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="24-checklist-para-criar-um-crud">24. Checklist para criar um CRUD</h1>
+<pre><code class="language-text">[ ] Criar projeto Node
+[ ] npm init -y
+
+[ ] Instalar Express
+[ ] npm install express
+
+[ ] Instalar pg
+[ ] npm install pg
+
+[ ] Criar servidor Express
+[ ] app.use(express.json())
+
+[ ] Criar conexão Pool
+[ ] Conectar ao PostgreSQL
+
+[ ] Criar tabela
+
+[ ] Criar POST
+[ ] Criar GET
+[ ] Criar GET por ID
+[ ] Criar PUT
+[ ] Criar DELETE
+
+[ ] Usar queries parametrizadas
+[ ] Validar req.body
+[ ] Verificar registros inexistentes
+[ ] Usar status HTTP apropriados
+
+</code></pre>
+<hr />
+<h1 id="25-o-que-memorizar-primeiro">25. O que memorizar primeiro</h1>
+<p>Para começar a desenvolver APIs com Express + PostgreSQL, concentre-se nestes conceitos:</p>
+<h2 id="express">Express</h2>
+<pre><code class="language-js">express()
+app.use()
+app.get()
+app.post()
+app.put()
+app.delete()
+req.body
+req.params
+req.query
+res.json()
+res.status()
+</code></pre>
+<h2 id="postgresql">PostgreSQL</h2>
+<pre><code class="language-sql">CREATE TABLE
+INSERT
+SELECT
+UPDATE
+DELETE
+WHERE
+JOIN
+PRIMARY KEY
+FOREIGN KEY
+RETURNING
+</code></pre>
+<h2 id="pg"><code>pg</code></h2>
+<pre><code class="language-js">Pool
+pool.query()
+resultado.rows
+$1
+$2
+$3
+</code></pre>
+<hr />
+<h1 id="26-autenticacao-e-jwt">26. Autenticação e JWT</h1>
+<p>Até aqui, a API permite acessar as rotas sem saber quem está fazendo a requisição.</p>
+<p>Para controlar isso, podemos implementar <strong>autenticação</strong>.</p>
+<p>A ideia será:</p>
+<pre><code class="language-text">Cliente
+   ↓
+POST /login
+   ↓
+Express
+   ↓
+PostgreSQL
+   ↓
+usuário e senha corretos
+   ↓
+JWT
+   ↓
+Cliente recebe o token
+   ↓
+envia o token nas próximas requisições
+   ↓
+Middleware verifica o token
+   ↓
+rota protegida
+</code></pre>
+<hr />
+<h1 id="27-o-que-e-autenticacao">27. O que é autenticação?</h1>
+<p><strong>Autenticação</strong> é verificar a identidade de alguém.</p>
+<p>Por exemplo:</p>
+<pre><code class="language-text">usuário: joao
+senha: 123
+</code></pre>
+<p>A API verifica no banco:</p>
+<pre><code class="language-text">João existe?
+A senha está correta?
+</code></pre>
+<p>Se estiver:</p>
+<pre><code class="language-text">Usuário autenticado
+</code></pre>
+<p>Já <strong>autorização</strong> é verificar se o usuário autenticado possui permissão para executar determinada ação.</p>
+<p>Exemplo:</p>
+<pre><code class="language-text">Autenticação:
+&quot;Quem é você?&quot;
+
+Autorização:
+&quot;Você pode fazer isso?&quot;
+</code></pre>
+<hr />
+<h1 id="28-o-problema-depois-do-login">28. O problema depois do login</h1>
+<p>Imagine:</p>
+<pre><code class="language-http">POST /login
+</code></pre>
+<p>Body:</p>
+<pre><code class="language-json">{
+    &quot;usuario&quot;: &quot;joao&quot;,
+    &quot;senha&quot;: &quot;123&quot;
+}
+</code></pre>
+<p>A API verifica os dados e confirma que o login está correto.</p>
+<p>Mas depois o cliente faz:</p>
+<pre><code class="language-http">GET /produtos
+</code></pre>
+<p>Como a API sabe que essa requisição pertence ao João?</p>
+<p>Uma solução é utilizar um <strong>token</strong>.</p>
+<hr />
+<h1 id="29-o-que-e-um-token">29. O que é um token?</h1>
+<p>Um token é uma credencial que pode ser enviada pelo cliente para provar que ele já passou pelo processo de autenticação.</p>
+<p>Uma analogia:</p>
+<pre><code class="language-text">Entrada de um evento
+       ↓
+apresenta ingresso
+       ↓
+ingresso é validado
+       ↓
+recebe uma pulseira
+       ↓
+usa a pulseira para acessar áreas permitidas
+</code></pre>
+<p>Na API:</p>
+<pre><code class="language-text">Login
+  ↓
+usuário + senha
+  ↓
+credenciais verificadas
+  ↓
+recebe token
+  ↓
+envia token nas próximas requisições
+</code></pre>
+<hr />
+<h1 id="30-o-que-e-jwt">30. O que é JWT?</h1>
+<p>JWT significa:</p>
+<p><strong>JSON Web Token</strong></p>
+<p>É um formato utilizado para transportar informações entre partes de uma aplicação, permitindo que essas informações sejam verificadas por meio de uma assinatura.</p>
+<p>Um JWT possui três partes:</p>
+<pre><code class="language-text">HEADER.PAYLOAD.SIGNATURE
+</code></pre>
+<p>Exemplo:</p>
+<pre><code class="language-text">eyJhbGciOiJIUzI1NiIs...
+.
+eyJpZCI6MTAsIm5vbWUiOiJKb2FvIn0...
+.
+assinatura...
+</code></pre>
+<p>As três partes são:</p>
+<pre><code class="language-text">HEADER
+   ↓
+informações sobre o token
+
+PAYLOAD
+   ↓
+dados/claims
+
+SIGNATURE
+   ↓
+assinatura utilizada para verificar o token
+</code></pre>
+<hr />
+<h1 id="31-header">31. Header</h1>
+<p>O header contém informações sobre o token.</p>
+<p>Exemplo:</p>
+<pre><code class="language-json">{
+    &quot;alg&quot;: &quot;HS256&quot;,
+    &quot;typ&quot;: &quot;JWT&quot;
+}
+</code></pre>
+<p><code>alg</code> indica o algoritmo utilizado para a assinatura.</p>
+<p><code>typ</code> indica o tipo do token.</p>
+<p>Normalmente a biblioteca JWT cria essa parte automaticamente.</p>
+<hr />
+<h1 id="32-payload">32. Payload</h1>
+<p>O payload contém os dados que queremos transportar.</p>
+<p>Exemplo:</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 10,
+    &quot;nome&quot;: &quot;Joao&quot;
+}
+</code></pre>
+<p>Também podemos ter informações relacionadas ao próprio token:</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 10,
+    &quot;nome&quot;: &quot;Joao&quot;,
+    &quot;iat&quot;: 1758180000,
+    &quot;exp&quot;: 1758183600
+}
+</code></pre>
+<p><code>iat</code> representa o momento em que o token foi emitido.</p>
+<p><code>exp</code> representa o momento em que o token expira.</p>
+<hr />
+<h1 id="33-nao-coloque-informacoes-secretas-no-payload">33. Não coloque informações secretas no payload</h1>
+<p>O payload de um JWT não deve ser tratado como um local para armazenar informações secretas.</p>
+<p>Não coloque, por exemplo:</p>
+<pre><code class="language-json">{
+    &quot;senha&quot;: &quot;123456&quot;
+}
+</code></pre>
+<p>A assinatura serve principalmente para permitir verificar a integridade e autenticidade do token.</p>
+<p>JWT não deve ser confundido com criptografia de dados.</p>
+<hr />
+<h1 id="34-signature">34. Signature</h1>
+<p>A assinatura é criada a partir do conteúdo do token e de uma chave.</p>
+<p>De forma simplificada:</p>
+<pre><code class="language-text">HEADER + PAYLOAD + CHAVE SECRETA
+                 ↓
+             assinatura
+</code></pre>
+<p>Se alguém modificar o payload:</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 10,
+    &quot;nome&quot;: &quot;Joao&quot;,
+    &quot;admin&quot;: true
+}
+</code></pre>
+<p>a assinatura original não corresponderá mais ao conteúdo alterado.</p>
+<p>A API pode detectar essa alteração ao verificar o token.</p>
+<hr />
+<h1 id="35-chave-secreta">35. Chave secreta</h1>
+<p>A API precisa possuir uma chave usada para assinar e verificar os tokens.</p>
+<p>Uma variável de ambiente pode ser utilizada:</p>
+<pre><code class="language-env">JWT_SECRET=minha-chave-secreta
+</code></pre>
+<p>No código:</p>
+<pre><code class="language-js">process.env.JWT_SECRET
+</code></pre>
+<p>A chave deve ser protegida e não deve ser publicada no código-fonte ou no repositório.</p>
+<hr />
+<h1 id="36-instalando-jwt">36. Instalando JWT</h1>
+<p>Para Node.js, podemos utilizar a biblioteca <code>jsonwebtoken</code>.</p>
+<p>Instalar:</p>
+<pre><code class="language-bash">npm install jsonwebtoken
+</code></pre>
+<p>Importar:</p>
+<pre><code class="language-js">const jwt = require(&quot;jsonwebtoken&quot;);
+</code></pre>
+<p>As duas operações mais importantes inicialmente são:</p>
+<pre><code class="language-js">jwt.sign()
+jwt.verify()
+</code></pre>
+<p><code>sign()</code> cria um token.</p>
+<p><code>verify()</code> verifica um token.</p>
+<hr />
+<h1 id="37-criando-um-jwt">37. Criando um JWT</h1>
+<p>Exemplo:</p>
+<pre><code class="language-js">const token = jwt.sign(
+    {
+        id: 10,
+        nome: &quot;Joao&quot;
+    },
+    process.env.JWT_SECRET,
+    {
+        expiresIn: &quot;1h&quot;
+    }
+);
+</code></pre>
+<p>Os argumentos são:</p>
+<pre><code class="language-text">jwt.sign(
+    payload,
+    chave secreta,
+    opções
+)
+</code></pre>
+<p>Neste exemplo:</p>
+<pre><code class="language-text">payload
+    ↓
+id e nome do usuário
+
+chave secreta
+    ↓
+process.env.JWT_SECRET
+
+expiresIn
+    ↓
+token expira em 1 hora
+</code></pre>
+<hr />
+<h1 id="38-jwt-no-login">38. JWT no login</h1>
+<p>O JWT normalmente é criado depois que o usuário e a senha foram verificados.</p>
+<p>Exemplo:</p>
+<pre><code class="language-js">app.post(&quot;/login&quot;, async (req, res) =&gt; {
+
+    const { usuario, senha } = req.body;
+
+    const resultado = await pool.query(
+        &quot;SELECT * FROM usuario WHERE nome = $1&quot;,
+        [usuario]
+    );
+
+    if (resultado.rows.length === 0) {
+
+        return res.status(401).json({
+            erro: &quot;Usuário ou senha inválidos&quot;
+        });
+
+    }
+
+    const user = resultado.rows[0];
+
+    // Em uma aplicação real,
+    // a senha deve ser armazenada como hash.
+    if (senha !== user.senha) {
+
+        return res.status(401).json({
+            erro: &quot;Usuário ou senha inválidos&quot;
+        });
+
+    }
+
+    const token = jwt.sign(
+        {
+            id: user.id,
+            nome: user.nome
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: &quot;1h&quot;
+        }
+    );
+
+    res.json({
+        token: token
+    });
+
+});
+</code></pre>
+<p>O fluxo é:</p>
+<pre><code class="language-text">POST /login
+     ↓
+recebe usuário e senha
+     ↓
+consulta PostgreSQL
+     ↓
+verifica credenciais
+     ↓
+jwt.sign()
+     ↓
+retorna token
+</code></pre>
+<hr />
+<h1 id="39-resposta-do-login">39. Resposta do login</h1>
+<p>Se o login funcionar:</p>
+<pre><code class="language-json">{
+    &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;
+}
+</code></pre>
+<p>O cliente pode guardar esse token e enviá-lo nas próximas requisições.</p>
+<hr />
+<h1 id="40-authorization-header">40. Authorization Header</h1>
+<p>O token normalmente é enviado no header:</p>
+<pre><code class="language-http">Authorization: Bearer TOKEN
+</code></pre>
+<p>Exemplo:</p>
+<pre><code class="language-http">GET /produtos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+</code></pre>
+<p><code>Bearer</code> indica que o valor seguinte é o token utilizado para autenticação.</p>
+<hr />
+<h1 id="41-middleware-de-autenticacao">41. Middleware de autenticação</h1>
+<p>Como várias rotas podem precisar de autenticação, é útil criar um middleware.</p>
+<p>Exemplo:</p>
+<pre><code class="language-text">middleware/
+└── autenticar.js
+</code></pre>
+<p>Código:</p>
+<pre><code class="language-js">const jwt = require(&quot;jsonwebtoken&quot;);
+
+function autenticar(req, res, next) {
+
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+
+        return res.status(401).json({
+            erro: &quot;Token não fornecido&quot;
+        });
+
+    }
+
+    const partes = authHeader.split(&quot; &quot;);
+
+    const tipo = partes[0];
+    const token = partes[1];
+
+    if (tipo !== &quot;Bearer&quot; || !token) {
+
+        return res.status(401).json({
+            erro: &quot;Formato de token inválido&quot;
+        });
+
+    }
+
+    try {
+
+        const usuario = jwt.verify(
+            token,
+            process.env.JWT_SECRET
+        );
+
+        req.usuario = usuario;
+
+        next();
+
+    } catch (erro) {
+
+        return res.status(401).json({
+            erro: &quot;Token inválido ou expirado&quot;
+        });
+
+    }
+
+}
+
+module.exports = autenticar;
+</code></pre>
+<hr />
+<h1 id="42-como-o-middleware-funciona">42. Como o middleware funciona?</h1>
+<p>A requisição:</p>
+<pre><code class="language-text">GET /produtos
+</code></pre>
+<p>passa pelo middleware:</p>
+<pre><code class="language-text">GET /produtos
+      ↓
+autenticar
+      ↓
+existe token?
+      ↓
+jwt.verify()
+      ↓
+token válido?
+   ↓       ↓
+ não      sim
+   ↓        ↓
+ 401      next()
+            ↓
+       rota /produtos
+</code></pre>
+<hr />
+<h1 id="43-jwtverify">43. <code>jwt.verify()</code></h1>
+<p>A parte principal da verificação é:</p>
+<pre><code class="language-js">const usuario = jwt.verify(
+    token,
+    process.env.JWT_SECRET
+);
+</code></pre>
+<p>A biblioteca verifica se o token é válido utilizando a chave secreta.</p>
+<p>Se o token estiver inválido ou expirado, ocorre um erro.</p>
+<p>Por isso utilizamos:</p>
+<pre><code class="language-js">try {
+
+    // verifica JWT
+
+} catch (erro) {
+
+    // token inválido
+}
+</code></pre>
+<hr />
+<h1 id="44-requsuario">44. <code>req.usuario</code></h1>
+<p>Depois de verificar o token:</p>
+<pre><code class="language-js">const usuario = jwt.verify(
+    token,
+    process.env.JWT_SECRET
+);
+</code></pre>
+<p>podemos colocar os dados do usuário dentro da requisição:</p>
+<pre><code class="language-js">req.usuario = usuario;
+</code></pre>
+<p>Assim, as próximas etapas da requisição podem acessar:</p>
+<pre><code class="language-js">req.usuario.id
+</code></pre>
+<p>ou:</p>
+<pre><code class="language-js">req.usuario.nome
+</code></pre>
+<p>Por exemplo:</p>
+<pre><code class="language-js">console.log(req.usuario);
+</code></pre>
+<p>Pode produzir:</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 10,
+    &quot;nome&quot;: &quot;Joao&quot;,
+    &quot;iat&quot;: 1758180000,
+    &quot;exp&quot;: 1758183600
+}
+</code></pre>
+<hr />
+<h1 id="45-next">45. <code>next()</code></h1>
+<p>No Express, um middleware pode decidir se a requisição deve continuar.</p>
+<p>Quando o token é válido:</p>
+<pre><code class="language-js">next();
+</code></pre>
+<p>permite que a execução continue.</p>
+<p>Quando o token é inválido:</p>
+<pre><code class="language-js">return res.status(401).json({
+    erro: &quot;Token inválido&quot;
+});
+</code></pre>
+<p>a requisição termina ali.</p>
+<hr />
+<h1 id="46-protegendo-uma-rota">46. Protegendo uma rota</h1>
+<p>Importar:</p>
+<pre><code class="language-js">const autenticar = require(&quot;./middleware/autenticar&quot;);
+</code></pre>
+<p>Depois:</p>
+<pre><code class="language-js">app.get(
+    &quot;/produtos&quot;,
+    autenticar,
+    async (req, res) =&gt; {
+
+        const resultado = await pool.query(
+            &quot;SELECT * FROM produtos&quot;
+        );
+
+        res.json(resultado.rows);
+
+    }
+);
+</code></pre>
+<p>Agora:</p>
+<pre><code class="language-text">GET /produtos
+       ↓
+autenticar
+       ↓
+JWT válido
+       ↓
+rota /produtos
+</code></pre>
+<p>Sem token:</p>
+<pre><code class="language-text">GET /produtos
+       ↓
+autenticar
+       ↓
+401 Unauthorized
+</code></pre>
+<hr />
+<h1 id="47-protegendo-varias-rotas">47. Protegendo várias rotas</h1>
+<p>Podemos colocar o middleware diretamente nas rotas:</p>
+<pre><code class="language-js">app.get(&quot;/produtos&quot;, autenticar, ...);
+
+app.post(&quot;/produtos&quot;, autenticar, ...);
+
+app.put(&quot;/produtos/:id&quot;, autenticar, ...);
+
+app.delete(&quot;/produtos/:id&quot;, autenticar, ...);
+</code></pre>
+<p>Também podemos aplicar o middleware a um conjunto de rotas:</p>
+<pre><code class="language-js">app.use(&quot;/produtos&quot;, autenticar);
+</code></pre>
+<p>Nesse caso, as rotas que começam com <code>/produtos</code> passam pelo middleware.</p>
+<hr />
+<h1 id="48-utilizando-o-usuario-autenticado">48. Utilizando o usuário autenticado</h1>
+<p>Uma das maiores utilidades do JWT é conseguir identificar o usuário que fez a requisição.</p>
+<p>Por exemplo:</p>
+<pre><code class="language-js">app.post(
+    &quot;/registros&quot;,
+    autenticar,
+    async (req, res) =&gt; {
+
+        const usuarioId = req.usuario.id;
+
+        // restante da operação
+
+    }
+);
+</code></pre>
+<p>O cliente pode enviar:</p>
+<pre><code class="language-json">{
+    &quot;produto_id&quot;: 5,
+    &quot;tipo&quot;: &quot;entrada&quot;,
+    &quot;quantidade&quot;: 20
+}
+</code></pre>
+<p>Sem precisar enviar:</p>
+<pre><code class="language-json">{
+    &quot;usuario_id&quot;: 10
+}
+</code></pre>
+<p>A API obtém o usuário a partir do JWT:</p>
+<pre><code class="language-js">const usuarioId = req.usuario.id;
+</code></pre>
+<hr />
+<h1 id="49-jwt-postgresql">49. JWT + PostgreSQL</h1>
+<p>Considere uma tabela:</p>
+<pre><code class="language-sql">CREATE TABLE registro (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    data TIMESTAMP NOT NULL,
+    tipo VARCHAR NOT NULL,
+    quantidade INT NOT NULL
+);
+</code></pre>
+<p>Uma rota protegida poderia utilizar:</p>
+<pre><code class="language-js">app.post(
+    &quot;/registros&quot;,
+    autenticar,
+    async (req, res) =&gt; {
+
+        const usuarioId = req.usuario.id;
+
+        const {
+            produto_id,
+            tipo,
+            quantidade
+        } = req.body;
+
+        const resultado = await pool.query(
+            `
+            INSERT INTO registro
+                (usuario_id, produto_id, data, tipo, quantidade)
+            VALUES
+                ($1, $2, NOW(), $3, $4)
+            RETURNING *
+            `,
+            [
+                usuarioId,
+                produto_id,
+                tipo,
+                quantidade
+            ]
+        );
+
+        res.status(201).json(
+            resultado.rows[0]
+        );
+
+    }
+);
+</code></pre>
+<p>Fluxo:</p>
+<pre><code class="language-text">Login
+  ↓
+JWT
+  ↓
+Authorization: Bearer JWT
+  ↓
+autenticar
+  ↓
+req.usuario.id
+  ↓
+usuario_id
+  ↓
+INSERT
+</code></pre>
+<hr />
+<h1 id="50-testando-jwt-no-thunder-client">50. Testando JWT no Thunder Client</h1>
+<h2 id="1-fazer-login">1. Fazer login</h2>
+<pre><code class="language-http">POST /login
+</code></pre>
+<p>Body:</p>
+<pre><code class="language-json">{
+    &quot;usuario&quot;: &quot;joao&quot;,
+    &quot;senha&quot;: &quot;123&quot;
+}
+</code></pre>
+<p>Resposta:</p>
+<pre><code class="language-json">{
+    &quot;token&quot;: &quot;eyJhbGciOi...&quot;
+}
+</code></pre>
+<hr />
+<h2 id="2-copiar-o-token">2. Copiar o token</h2>
+<p>Copie:</p>
+<pre><code class="language-text">eyJhbGciOi...
+</code></pre>
+<hr />
+<h2 id="3-acessar-uma-rota-protegida">3. Acessar uma rota protegida</h2>
+<pre><code class="language-http">GET /produtos
+</code></pre>
+<p>Header:</p>
+<pre><code class="language-text">Authorization: Bearer eyJhbGciOi...
+</code></pre>
+<p>Se estiver correto:</p>
+<pre><code class="language-text">200 OK
+</code></pre>
+<p>Sem token:</p>
+<pre><code class="language-text">401 Unauthorized
+</code></pre>
+<p>Com token inválido ou expirado:</p>
+<pre><code class="language-text">401 Unauthorized
+</code></pre>
+<hr />
+<h1 id="51-jwt-e-sessao-tradicional">51. JWT e sessão tradicional</h1>
+<p>Uma forma tradicional de autenticação pode manter uma sessão no servidor.</p>
+<p>Com JWT, a ideia pode ser:</p>
+<pre><code class="language-text">Cliente
+   ↓
+JWT
+   ↓
+Servidor verifica assinatura
+</code></pre>
+<p>O servidor não precisa necessariamente manter uma sessão individual para cada usuário.</p>
+<p>Isso é conhecido como uma abordagem <strong>stateless</strong>.</p>
+<p>O JWT ainda pode ser utilizado junto com outros mecanismos de controle de sessão, mas a ideia básica é que a própria credencial contém as informações necessárias para sua validação.</p>
+<hr />
+<h1 id="52-jwt-nao-substitui-autorizacao">52. JWT não substitui autorização</h1>
+<p>Ter um JWT válido significa que o usuário foi autenticado.</p>
+<p>Isso não significa automaticamente que ele pode fazer qualquer coisa.</p>
+<p>Por exemplo:</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 10,
+    &quot;nome&quot;: &quot;Joao&quot;,
+    &quot;tipo&quot;: &quot;usuario&quot;
+}
+</code></pre>
+<p>e:</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 20,
+    &quot;nome&quot;: &quot;Maria&quot;,
+    &quot;tipo&quot;: &quot;admin&quot;
+}
+</code></pre>
+<p>A API poderia verificar permissões antes de determinadas operações.</p>
+<p>Por exemplo:</p>
+<pre><code class="language-js">if (req.usuario.tipo !== &quot;admin&quot;) {
+
+    return res.status(403).json({
+        erro: &quot;Sem permissão&quot;
+    });
+
+}
+</code></pre>
+<p>Nesse caso:</p>
+<pre><code class="language-text">401 → não autenticado
+
+403 → autenticado, mas sem permissão
+</code></pre>
+<hr />
+<h1 id="53-401-vs-403">53. <code>401</code> vs <code>403</code></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Código</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><code>401</code></td>
+<td>Usuário não autenticado / credencial inválida</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>403</code></td>
+<td>Usuário autenticado, mas sem permissão</td>
+</tr>
+</tbody>
+</table>
+<p>Exemplo:</p>
+<pre><code class="language-text">Sem JWT
+   ↓
+401
+</code></pre>
+<pre><code class="language-text">JWT válido + sem permissão
+   ↓
+403
+</code></pre>
+<hr />
+<h1 id="54-estrutura-recomendada">54. Estrutura recomendada</h1>
+<p>Conforme a API cresce, podemos separar o middleware das rotas:</p>
+<pre><code class="language-text">minha-api/
+│
+├── node_modules/
+├── package.json
+├── .env
+│
+└── src/
+    ├── server.js
+    │
+    ├── middleware/
+    │   └── autenticar.js
+    │
+    ├── routes/
+    │   ├── login.js
+    │   ├── produtos.js
+    │   └── registros.js
+    │
+    └── controllers/
+        ├── loginController.js
+        ├── produtoController.js
+        └── registroController.js
+</code></pre>
+<p>O middleware fica responsável pela autenticação.</p>
+<p>As rotas ficam responsáveis por receber as requisições.</p>
+<p>Os controllers podem concentrar a lógica das operações.</p>
+<hr />
+<h1 id="55-fluxo-completo-da-aplicacao">55. Fluxo completo da aplicação</h1>
+<pre><code class="language-text">                  POST /login
+                       │
+                       ▼
+                usuário + senha
+                       │
+                       ▼
+                   Express
+                       │
+                       ▼
+                 PostgreSQL
+                       │
+                       ▼
+              credenciais válidas?
+                 /           \
+               NÃO           SIM
+                │             │
+               401            ▼
+                         jwt.sign()
+                              │
+                              ▼
+                             JWT
+                              │
+                              ▼
+                           Cliente
+                              │
+                 Authorization: Bearer JWT
+                              │
+                              ▼
+                      Rota protegida
+                              │
+                              ▼
+                         Middleware
+                              │
+                        jwt.verify()
+                         /        \
+                     inválido      válido
+                        │            │
+                       401           ▼
+                              req.usuario
+                                   │
+                                   ▼
+                                  Rota
+                                   │
+                                   ▼
+                              PostgreSQL
+</code></pre>
+<hr />
+<h1 id="56-checklist-de-jwt">56. Checklist de JWT</h1>
+<pre><code class="language-text">[ ] Instalar jsonwebtoken
+
+[ ] Criar JWT_SECRET
+
+[ ] Configurar variável de ambiente
+
+[ ] Criar rota POST /login
+
+[ ] Verificar usuário no PostgreSQL
+
+[ ] Verificar senha
+
+[ ] Criar JWT com jwt.sign()
+
+[ ] Retornar token ao cliente
+
+[ ] Criar middleware de autenticação
+
+[ ] Ler Authorization
+
+[ ] Extrair Bearer token
+
+[ ] Usar jwt.verify()
+
+[ ] Colocar usuário em req.usuario
+
+[ ] Usar next()
+
+[ ] Proteger rotas
+
+[ ] Utilizar req.usuario.id quando necessário
+
+[ ] Implementar autorização quando necessário
+</code></pre>
+<hr />
+<h1 id="57-o-que-memorizar-primeiro">57. O que memorizar primeiro</h1>
+<p>Não é necessário decorar toda a implementação de uma vez.</p>
+<p>Comece entendendo:</p>
+<pre><code class="language-text">LOGIN
+  ↓
+JWT
+  ↓
+Authorization: Bearer TOKEN
+  ↓
+middleware
+  ↓
+jwt.verify()
+  ↓
+req.usuario
+  ↓
+rota protegida
+</code></pre>
+<p>E principalmente:</p>
+<pre><code class="language-js">jwt.sign()
+</code></pre>
+<p>→ cria o token.</p>
+<pre><code class="language-js">jwt.verify()
+</code></pre>
+<p>→ verifica o token.</p>
+<pre><code class="language-js">req.usuario
+</code></pre>
+<p>→ permite que as rotas utilizem as informações do usuário autenticado.</p>
+<hr />
+<h1 id="58-conceitos-para-estudar-depois">58. Conceitos para estudar depois</h1>
+<p>Depois de entender o fluxo básico, os próximos assuntos importantes são:</p>
+<pre><code class="language-text">JWT
+ ↓
+Hash de senha
+ ↓
+bcrypt / Argon2
+ ↓
+Autorização
+ ↓
+Roles / permissões
+ ↓
+Access token
+ ↓
+Refresh token
+ ↓
+Expiração
+ ↓
+Logout / revogação
+ ↓
+Cookies ou armazenamento do token
+ ↓
+HTTPS
+</code></pre>
+<p>O objetivo inicial não é decorar todos esses conceitos, mas entender claramente o ciclo:</p>
+<pre><code class="language-text">&quot;Eu faço login&quot;
+       ↓
+&quot;Recebo uma credencial&quot;
+       ↓
+&quot;Envio essa credencial&quot;
+       ↓
+&quot;A API verifica&quot;
+       ↓
+&quot;A API descobre quem sou&quot;
+       ↓
+&quot;A API decide se posso executar a operação&quot;
+</code></pre>
+<style>
+
+    h1{
+
+        color: #5EFF6B;
+
+    }
+
+    h2{
+
+        color: #82d889;
+
+    }
+
+    .barrinha{
+
+        width: 100%; 
+        height: 5px; 
+        background-color: #5EFF6B; 
+        border-radius: 20px;
+        margin: 7px;
+
+    }
+
+    .codigo{
+
+        background-color: #353535;
+        padding: 4px 15px;
+        border-radius: 10px;
+        color: #a0d1a4;
+
+    }
+
+    .bloco_codigo{
+
+        background-color: #353535;
+        padding: 15px;
+        border-radius: 10px;
+        color: #a0d1a4;
+
+    }
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
