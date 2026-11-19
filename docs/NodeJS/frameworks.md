@@ -101,8 +101,6 @@ Onde:
 
 - O terceiro objeto carrega outros valores relevantes para o JWT, como, no exemplo, quando o mesmo expira. O valor é sempre uma string, como *'1h'* ou *'20m'* por exemplo
 
-
-
 <div class="barrinha"></div>
 
 ## Bcrypt

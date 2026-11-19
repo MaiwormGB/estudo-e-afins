@@ -148,7 +148,7 @@ app.post('/usuario', async (req, res) =>{
 - Após criar a variavel de resultado e inserir `await pool.query()`, abra duas crases dentro dos parenteses. É dentro dessas crases que a query propriamente dita sera escrita
 - **IMPORTANTE:** As crases são essenciais para permitir a inserção de variaveis dentro da query, e por isso não podem ser substituidas por *' '* ou *" "*
 - A query segue o padrão de queries comuns de PostgreSQL, com o diferencial da inserção de variaveis que representam os dados colhetados pelo *req*.
-- Os dados das variaveis são sifrões seguidos por um numero *($1, $2, $3, etc)*. Fora das crases, crie uma estrutura de array *[variavel, variavel, variavel]*
+- Os dados das variaveis são sifrões seguidos por um numero *($1, $2, $3, etc)*. Fora das crases, crie uma estrutura de array *[variavel, variavel, variavel]*. **Se lembre que a ordem importa**
 
 **EX**
 
